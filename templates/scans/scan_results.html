@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block content %}
+&nbsp;
+<div class="row">
+
+    {% if in_process %}
+    <div class="col-md-12 mb-4">
+        <div class="card">
+            <div class="card-header">In process scans</div>
+            <div class="card-body">
+                <table class="table table-responsive-sm">
+                   <thead>
+                      <tr>
+                         <th>Scan Name</th>
+                         <th>Start Time</th>
+                         <th>Configurations</th>
+                         <th>Progress</th>
+                         <th>Status</th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                   {% for scan in in_process %}
+                      <tr>
+                         <td>{{ scan.name }}</td>
+                         <td>{{ scan.start_time | date:'Y-m-d H:i:s'}}</td>
+                         <td>{{ scan.configuration.name }}</td>
+                         <td>{{ scan.percent_worked }} %</td>
+                         <td>{{ scan.get_status_display }}</td>
+                      </tr>
+                   {% endfor %}
+                   </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+
+
+    <div class="col-md-12 mb-4">
+        <div class="card">
+            <div class="card-header">Configurations Table</div>
+            <div class="card-body">
+
+                <table class="table table-responsive-sm">
+                   <thead>
+                      <tr>
+                         <th>Scan Name</th>
+                         <th>Finish Time</th>
+                         <th>Configuration</th>
+                         <th>Status</th>
+                         <th>Results</th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                      {% for scan in scan_results %}
+                      <tr>
+                         <td width="20%">{{ scan.name }}</td>
+                         <td width="15%">{{ scan.finish_time | date:'Y-m-d H:i:s'}}</td>
+                         <td width="20%">{{ scan.configuration.name }}</td>
+                         <td width="15%">{{ scan.get_status_display }}</td>
+                         <td width="30%">
+                             <table>
+                                 {% for scan_host in scan.scan_hosts.all %}
+                                 {% with scan_host.calc_count_controls as result %}
+                                 {{ scan_host.host }}:
+                                 {% if result.0 != 0 or result.1 != 0 or result.2 != 0 or result.3 != 0 %}
+                                 <a href="/scan/scan_{{ scan.id }}/host_{{ scan_host.host }}"><i class="nav-icon text-dark">&#8249;Full Info&#8250;</i></a>
+                                 {% else %}
+                                 <b>&#8249;{{ scan_host.error_message }}&#8250;</b>
+                                 {% endif %}
+                                 <div class="progress">
+                                     <div class="progress-bar bg-success" role="progressbar" style="width: {{ result.0 }}%" aria-valuenow="{{ result.1 }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                     <div class="progress-bar bg-danger" role="progressbar" style="width: {{ result.1 }}%" aria-valuenow="{{ result.2 }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                     <div class="progress-bar" role="progressbar" style="width: {{ result.2 }}%" aria-valuenow="{{ result.3 }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                     <div class="progress-bar bg-warning" role="progressbar" style="width: {{ result.3 }}%" aria-valuenow="{{ result.4 }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                 </div>
+                                 <br>
+                                 {% endwith %}
+                                 {% endfor %}
+                             </table>
+                         </td>
+                      </tr>
+                      {% endfor %}
+                   </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

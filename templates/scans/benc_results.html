@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% block content %}
+<div id="ui-view">
+  <div>
+     <div class="animated fadeIn">
+         &nbsp;
+         <div class="row">
+            <div class="col">
+               <div class="card">
+                  <div class="card-header">
+                     <i class="fa ti-clipboard"></i> {{ benchmark_name }}
+                  </div>
+                  <div class="card-body">
+                     <div class="row">
+                        <div class="col-4">
+                           <div class="list-group" id="list-tab" role="tablist">
+                              {% for control in controls %}
+                              <a class="list-group-item list-group-item-action {% if control == controls.0 %}active show{% endif %}"
+                                 id="list-{{ control.id }}-list" data-toggle="tab" href="#list-{{ control.id }}" role="tab" aria-controls="list-{{ control.id }}" aria-selected="true">
+
+                                  {% if control.status == 1 %}
+                                  <span class="badge badge-success">Compliant</span>
+                                  {% elif control.status == 2 %}
+                                  <span class="badge badge-danger">Not coml</span>&ensp;
+                                  {% elif control.status == 3 %}
+                                  <span class="badge badge-info">Not appl</span>&ensp;
+                                  {% else %}
+                                  <span class="badge badge-warning">Unknown</span>
+                                  {% endif %}
+                                  {{ control.title }}
+                              </a>
+                              {% endfor %}
+                           </div>
+                        </div>
+                        <div class="col-8">
+                           <div class="tab-content" id="nav-tabContent">
+                              {% for control in controls %}
+                              <div class="tab-pane fade {% if control == controls.0 %}active show{% endif %}"
+                                   id="list-{{ control.id }}" role="tabpanel" aria-labelledby="list-{{ control.id }}-list"
+                                   align="justify">
+                                 <h2 align="center" style="color: #0d4559">[{{ control.id }}] {{ control.title }}</h2>
+                                 &nbsp;
+                                 <h3 style="color: #0d4559">Status</h3>
+                                 <p>
+                                      {% if control.status == 1 %}
+                                      <font color="green">Compliant</font>
+                                      {% elif control.status == 2 %}
+                                      <font color="red">Not comliant</font>
+                                      {% elif control.status == 3 %}
+                                      <font color="blue">Not applicable</font>
+                                      {% else %}
+                                      <font color="orange">Unknown</font>
+                                      {% endif %}
+                                 </p>
+                                 <h3 style="color: #0d4559">Description</h3>
+                                 <p>
+                                    {{ control.description | linebreaks }}
+                                 </p>
+                                 <h3 style="color: #0d4559">Rationale</h3>
+                                 <p>
+                                    {{ control.rationale | linebreaks }}
+                                 </p>
+                                 <h3 style="color: #0d4559">Result</h3>
+                                 <p>
+                                     {% for item in control.result %}
+                                     {% if item.type == "table" %}
+                                     <table class="table table-responsive-sm table-sm">
+                                     {% if item.data.head %}
+                                       <thead>
+                                          <tr>
+                                             {% for head in item.data.head %}
+                                             <th>{{ head }}</th>
+                                             {% endfor %}
+                                          </tr>
+                                       </thead>
+                                     {% endif %}
+                                       <tbody>
+                                       {% for tr in item.data.body %}
+                                          <tr>
+                                             {% for td in tr %}
+                                             <td>{{ td | linebreaks }}</td>
+                                             {% endfor %}
+                                          </tr>
+                                       {% endfor %}
+                                       </tbody>
+                                     </table>
+                                     {% elif item.type == "message" %}
+                                     <b>{{ item.data.head }}:</b>&emsp;{{ item.data.text }}<br>
+                                     {% endif %}
+                                     {% endfor %}
+                                 </p>
+                                 <h3 style="color: #0d4559">Remediation</h3>
+                                 <p>
+                                    {{ control.remediation | linebreaks }}
+                                 </p>
+                                 <h3 style="color: #0d4559">Impact</h3>
+                                 <p>
+                                    {{ control.impact | linebreaks }}
+                                 </p>
+                              </div>
+                           {% endfor %}
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+
+     </div>
+  </div>
+</div>
+{% endblock %}

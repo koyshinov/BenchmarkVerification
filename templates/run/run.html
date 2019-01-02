@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div id="ui-view">
+  <div>
+     <div class="animated fadeIn">
+         &nbsp;
+         <div class="row">
+
+            <div class="col-md-12 mb-4">
+                <div class="card">
+                    <div class="card-header">Run scanning</div>
+                    <div class="card-body">
+                        <form class="form-horizontal" action="/run" method="post">
+                            {% csrf_token %}
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="name">Name</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" id="name" type="text" name="name"></div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="conf">Configuration</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" id="conf" name="conf">
+                                        {% for conf in configurations %}
+                                        <option value="{{ conf.id }}">{{ conf.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <center>
+                                <button class="btn btn-primary" type="submit">Run</button>
+                            </center>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+         </div>
+     </div>
+  </div>
+</div>
+
+{% endblock %}

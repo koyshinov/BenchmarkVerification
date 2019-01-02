@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+<div id="ui-view">
+  <div>
+     <div class="animated fadeIn">
+         &nbsp;
+         <div class="row">
+            <div class="col">
+               <div class="card">
+                  <div class="card-header">
+                     <i class="fa ti-clipboard"></i> {{ benchmark_name }}
+                  </div>
+                  <div class="card-body">
+                     <div class="row">
+                        <div class="col-4">
+                           <div class="list-group" id="list-tab" role="tablist">
+                              {% for control in controls %}
+                              <a class="list-group-item list-group-item-action {% if control == controls.0 %}active show{% endif %}"
+                                 id="list-{{ control.id }}-list" data-toggle="tab" href="#list-{{ control.id }}" role="tab" aria-controls="list-{{ control.id }}" aria-selected="true">
+                                 [{{ control.id }}] {{ control.title }}
+                              </a>
+                              {% endfor %}
+                           </div>
+                        </div>
+                        <div class="col-8">
+                           <div class="tab-content" id="nav-tabContent">
+                              {% for control in controls %}
+                              <div class="tab-pane fade {% if control == controls.0 %}active show{% endif %}"
+                                   id="list-{{ control.id }}" role="tabpanel" aria-labelledby="list-{{ control.id }}-list"
+                                   align="justify">
+                                 <h2 align="center" style="color: #0d4559">{{ control.title }}</h2>
+                                 &nbsp;
+                                 <h3 style="color: #0d4559">Description</h3>
+                                 <p>
+                                    {{ control.description | linebreaks }}
+                                 </p>
+                                 <h3 style="color: #0d4559">Rationale</h3>
+                                 <p>
+                                    {{ control.rationale | linebreaks }}
+                                 </p>
+                                 <h3 style="color: #0d4559">Audit</h3>
+                                 <p>
+                                    {{ control.audit | linebreaks }}
+                                 </p>
+                                 <h3 style="color: #0d4559">Remediation</h3>
+                                 <p>
+                                    {{ control.remediation | linebreaks }}
+                                 </p>
+                                 <h3 style="color: #0d4559">Impact</h3>
+                                 <p>
+                                    {{ control.impact | linebreaks }}
+                                 </p>
+                              </div>
+                           {% endfor %}
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+
+     </div>
+  </div>
+</div>
+{% endblock %}

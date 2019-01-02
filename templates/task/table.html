@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div id="ui-view">
+  <div>
+     <div class="animated fadeIn">
+         &nbsp;
+         <div class="row">
+
+            <div class="col-md-12 mb-4">
+                <div class="card">
+                    <div class="card-header">Configurations Table</div>
+                    <div class="card-body">
+                        <table class="table table-responsive-sm">
+                           <thead>
+                              <tr>
+                                 <!--<th>ID</th>-->
+                                 <th>Name</th>
+                                 <th>Benchmarks</th>
+                                 <th>Hosts</th>
+                                 <th>WMI Login</th>
+                                 <th></th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                           {% for config in configurations %}
+                              <tr>
+                                 <!--<td>{{ config.0 }}</td>-->
+                                 <td>{{ config.1 }}</td>
+                                 <td>{{ config.2 | join:"<br>" }}</td>
+                                 <td>{{ config.3 | join:"<br>" }}</td>
+                                 <td>{{ config.4 }}</td>
+                                 <td>
+                                     <a href="/task/delete/{{ config.0 }}">
+                                        <i class="nav-icon ti-trash text-danger"></i>
+                                     </a></td>
+                              </tr>
+                           {% endfor %}
+
+                           </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+         </div>
+     </div>
+  </div>
+</div>
+
+
+{% endblock %}

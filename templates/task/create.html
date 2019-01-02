@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div id="ui-view">
+  <div>
+     <div class="animated fadeIn">
+         &nbsp;
+         <div class="row">
+
+            <div class="col-md-12 mb-4">
+                <div class="card">
+                    <div class="card-header">Create Configuration</div>
+                    <div class="card-body">
+                        <form class="form-horizontal" action="/task/create" method="post">
+                            {% csrf_token %}
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="name">Name</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" id="name" type="text" name="name"></div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="benchmarks">Benchmarks</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" id="benchmarks" name="benchmarks" size="5" multiple="">
+                                        {% for benchmark in benchmarks %}
+                                        <option value="{{ benchmark.1 }}">{{ benchmark.0 }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="hosts">Hosts</label>
+                                <div class="col-md-9">
+                                    <textarea class="form-control" id="hosts" name="hosts" style="height: 149px;"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="wmi_login">WMI Login</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" id="wmi_login" type="text" name="wmi_login"></div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="wmi_passw">WMI Password</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" id="wmi_passw" type="password" name="wmi_passw"></div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="wmi_passw2">Repeat WMI Password</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" id="wmi_passw2" type="password" name="wmi_passw2"></div>
+                            </div>
+
+                            <center>
+                                <button class="btn btn-primary" type="submit" >Create</button>
+                            </center>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+         </div>
+     </div>
+  </div>
+</div>
+
+
+{% endblock %}

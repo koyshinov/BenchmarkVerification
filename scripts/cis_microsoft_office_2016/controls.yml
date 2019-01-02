@@ -1,0 +1,302 @@
+101:
+  type: secur_app_sett
+  path: HKLM\software\microsoft\internet explorer\main\featurecontrol\feature_zone_elevation
+  compliant_values: [1]
+
+102:
+  type: secur_app_sett
+  path: HKLM\software\microsoft\internet explorer\main\featurecontrol\feature_mime_sniffing
+  compliant_values: [1]
+
+103:
+  type: secur_app_sett
+  path: HKLM\software\microsoft\internet explorer\main\featurecontrol\feature_securityband
+  compliant_values: [1]
+
+104:
+  type: secur_app_sett
+  path: HKLM\software\microsoft\internet explorer\main\featurecontrol\feature_safe_bindtoobject
+  compliant_values: [1]
+
+105:
+  type: secur_app_sett
+  path: HKLM\software\microsoft\internet explorer\main\featurecontrol\feature_restrict_filedownload
+  compliant_values: [1]
+
+106:
+  type: secur_app_sett
+  path: HKLM\software\microsoft\internet explorer\main\featurecontrol\feature_unc_savedfilecheck
+  compliant_values: [1]
+
+107:
+  type: secur_app_sett
+  path: HKLM\software\microsoft\internet explorer\main\featurecontrol\feature_http_username_password_disable
+  compliant_values: [1]
+
+108:
+  type: secur_app_sett
+  path: HKLM\software\microsoft\internet explorer\main\featurecontrol\feature_window_restrictions
+  compliant_values: [1]
+
+109:
+  type: secur_app_sett
+  path: HKLM\software\microsoft\internet explorer\main\featurecontrol\feature_localmachine_lockdown
+  compliant_values: [1]
+
+110:
+  type: secur_app_sett
+  path: HKLM\software\microsoft\internet explorer\main\featurecontrol\feature_object_caching
+  compliant_values: [1]
+
+111:
+  type: secur_app_sett
+  path: HKLM\software\microsoft\internet explorer\main\featurecontrol\feature_mime_handling
+  compliant_values: [1]
+
+112:
+  type: secur_app_sett
+  path: HKLM\software\microsoft\internet explorer\main\featurecontrol\feature_addon_management
+  compliant_values: [1]
+
+113:
+  type: secur_app_sett
+  path: HKLM\software\microsoft\internet explorer\main\featurecontrol\feature_validate_navigate_url
+  compliant_values: [1]
+
+114:
+  type: secur_app_sett
+  path: HKLM\software\microsoft\internet explorer\main\featurecontrol\feature_restrict_activexinstall
+  compliant_values: [1]
+
+115:
+  type: updates_check
+  path: HKLM\software\policies\microsoft\office\16.0\common\officeupdate
+  name: enableautomaticupdates
+  compliant_values: [1]
+
+116:
+  type: updates_check
+  path: HKLM\software\policies\microsoft\office\16.0\common\officeupdate
+  name: hideenabledisableupdates
+  compliant_values: [1]
+
+117:
+  type: users_sid_many_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common\documentinformationpanel
+  name: msoridcuxdocspropertypanelbeaconing
+  compliant_values: [1]
+
+118:
+  type: users_sid_each_app
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common\toolbars\{app}
+  name: noextensibilitycustomizationfromdocument
+  compliant_values: [1]
+
+119:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common\drm
+  name: disablecreation
+  compliant_values: [0, Null]
+
+120:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common\drm
+  name: neverallowdls
+  compliant_values: [1]
+
+121:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common\drm
+  name: requireconnection
+  compliant_values: [1]
+
+122:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common\drm\autoexpanddls
+  name: autoexpanddlsenable
+  compliant_values: [1]
+
+123:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common\drm
+  name: includehtml
+  compliant_values: [0, Null]
+
+124:
+  type: users_sid_many_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\common\blog
+  name: disableblog
+  compliant_values: [2]
+
+125:
+  type: users_sid_many_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common\signin
+  name: signinoptions
+  compliant_values: [3]
+
+126:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\powerpoint\security\fileblock
+  name: powerpoint12betafilesfromconverters
+  compliant_values: [1]
+
+127:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\excel\security\fileblock
+  name: excel12betafilesfromconverters
+  compliant_values: [1]
+
+128:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common\general
+  name: shownfirstrunoptin
+  compliant_values: [1]
+
+129:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common
+  name: qmenable
+  compliant_values: [0]
+
+130:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common\feedback
+  name: includescreenshot
+  compliant_values: [0]
+
+131:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common\feedback
+  name: enabled
+  compliant_values: [0]
+
+132:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common
+  name: sendcustomerdata
+  compliant_values: [0]
+
+133:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common
+  name: updatereliabilitydata
+  compliant_values: [0]
+
+134:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common\security\trusted locations
+  name: allow user locations
+  compliant_values: [0]
+
+135:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common\security
+  name: disablehyperlinkwarning
+  compliant_values: [0, Null]
+
+136:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common\security
+  name: drmencryptproperty
+  compliant_values: [1]
+
+137:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common\security
+  name: openxmlencryptproperty
+  compliant_values: [1]
+
+138:
+  type: users_sid_many_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\vba\security
+  name: loadcontrolsinforms
+  compliant_values: [Null, 0]
+
+139:
+  type: users_sid_encryption_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common\security
+  name: openxmlencryption
+
+140:
+  type: users_sid_encryption_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common\security
+  name: defaultencryption12
+
+141:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common\security
+  name: disablepasswordui
+  compliant_values: [0, Null]
+
+142:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common\trustcenter
+  name: trustbar
+  compliant_values: [0]
+
+143:
+  type: users_sid_many_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\common\security
+  name: automationsecurity
+  compliant_values: [3]
+
+144:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\common\security
+  name: uficontrols
+  compliant_values: [0, Null]
+
+145:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common\portal
+  name: linkpublishingdisabled
+  compliant_values: [1]
+
+146:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common\services\fax
+  name: nofax
+  compliant_values: [1]
+
+147:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common\signatures
+  name: suppressextsigningsvcs
+  compliant_values: [1]
+
+148:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common\signatures
+  name: enablecreationofweakxpsignatures
+  compliant_values: [0]
+
+149:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\common\smart tag
+  name: neverloadmanifests
+  compliant_values: [1]
+
+150:
+  type: users_sid_many_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common\internet
+  name: useonlinecontent
+  compliant_values: [2]
+
+151:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common\internet
+  name: allowpng
+  compliant_values: [0]
+
+152:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\common\internet
+  name: opendocumentsreadwritewhilebrowsing
+  compliant_values: [0]
+
+153:
+  type: users_sid_single_enabled_check
+  path: HKEY_USERS\{sid}\software\policies\microsoft\office\16.0\\common\ptwatson
+  name: ptwoptin
+  compliant_values: [0]
+

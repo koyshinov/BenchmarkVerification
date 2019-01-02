@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+&nbsp;
+<div class="row">
+
+    <div class="col-md-12 mb-4">
+        <div class="card">
+            <div class="card-header">Host scan result</div>
+            <div class="card-body">
+
+                {% for data in host_info %}
+                <b>{{ data.0 }}:</b>&emsp;{{ data.1 }} <br>
+                {% endfor %}
+
+                &nbsp;
+
+                <table class="table table-responsive-sm">
+                   <thead>
+                      <tr>
+                         <th>Benchmark</th>
+                         <th>Compliant</th>
+                         <th>Not compliant</th>
+                         <th>Not applicable</th>
+                         <th>Unknown</th>
+                         <th>Safety</th>
+                         <th>Detail</th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                   {% for scan in benchmark_results %}
+                      <tr>
+                          {% with scan.calc_count_controls as result %}
+                         <td>{{ scan.benchmark.name }}</td>
+                         <td width="10%"><font color="green">{{ result.0 }}</font> / {{ result.4 }}</td>
+                         <td width="10%"><font color="red">{{ result.1 }}</font> / {{ result.4 }}</td>
+                         <td width="10%"><font color="blue">{{ result.2 }}</font> / {{ result.4 }}</td>
+                         <td width="10%"><font color="orange">{{ result.3 }}</font> / {{ result.4 }}</td>
+                         <td>{{ result.5 }}{% if result.5 != None %} %{% endif %}</td>
+                         <td>
+                             {% if result.5 != None %}
+                             <a href="/scan/scan_{{ scan_id }}/host_{{ host }}/bench_{{ scan.benchmark.id }}"><i class="nav-icon text-dark">&#8249;Full Info&#8250;</i></a>
+                             {% endif %}
+                         </td>
+                          {% endwith %}
+                      </tr>
+                   {% endfor %}
+                   </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
