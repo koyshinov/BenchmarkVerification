@@ -49,6 +49,12 @@ python manage.py loaddata benchmark_cis_microsoft_office_2016.json
 python manage.py createsuperuser
 ```
 
+## Test
+
+```
+python manage.py test
+```
+
 ## Run
 
 ```
