@@ -49,24 +49,17 @@ def check_transport(hosts, conf):
     return all_good, result
 
 
-def run(request):
-    name = request.POST.get("name")
-    conf = request.POST.get("conf")
-
+def run(request, name, conf):
     scripts_re = re.compile(r"^\d+_\w+\.py$")
 
-    config_obj = Configuration.objects.get(id=conf)
-    scan = Scan.objects.create(user=request.user, name=name, configuration=config_obj,
+    scan = Scan.objects.create(user=request.user, name=name, configuration=conf,
                                start_time=datetime.now(tz=timezone.utc))
-
-    # TODO: Проверить все что нужно для сканирования
 
     while not Queue.check_queue(scan):
         time.sleep(1)
 
     hosts = scan.configuration.hosts
     excluded_hosts = list()
-    # hosts = [host for host in scan.configuration.hosts if host not in excluded_hosts]
 
     # Start scanning
     scan.status = 2  # Start ping hosts
@@ -80,7 +73,7 @@ def run(request):
     scan.status = 3  # Start check transport
     scan.save()
     hosts = [host for host in hosts if host not in excluded_hosts]
-    tran_status, tran_result = check_transport(hosts, config_obj)
+    tran_status, tran_result = check_transport(hosts, conf)
     if not tran_status:
         for fail_host, message in tran_result:
             ScanHost.objects.create(scan=scan, host=fail_host, error_message=message)
@@ -88,7 +81,7 @@ def run(request):
 
     scan.status = 4  # Start scan benchmarks
     scan.save()
-    benchmarks = config_obj.benchmarks.all()
+    benchmarks = conf.benchmarks.all()
 
     hosts = [host for host in hosts if host not in excluded_hosts]
 
@@ -135,9 +128,6 @@ def run(request):
 
 @login_required(login_url="/login")
 def run_page(request):
-    if request.method == "POST":
-        thread = threading.Thread(target=run, args=(request,))
-        thread.start()
     data = {
         "benchmarks": tuple(
             (bench.name, bench.id) for bench in Benchmark.objects.all()
@@ -145,4 +135,31 @@ def run_page(request):
         "dirs": ("Run", ),
         "configurations": Configuration.objects.filter(deleted=False, user=request.user)
     }
+    if request.method == "POST":
+        name = request.POST.get("name")
+        conf = request.POST.get("conf")
+
+        if not name or not conf:
+            data["messages"] = [
+                {"type": "danger", "title": "Invalid format!", "text": "Some data is empty"}
+            ]
+            return render(request, 'run/run.html', data)
+
+        config_obj = Configuration.objects.filter(id=conf, user=request.user)
+
+        if not config_obj:
+            data["messages"] = [
+                {"type": "danger", "title": "Invalid format!", "text": "Configuration not found"}
+            ]
+            return render(request, 'run/run.html', data)
+
+        conf = config_obj[0]
+
+        thread = threading.Thread(target=run, args=(request, name, conf))
+        thread.start()
+
+        data["messages"] = [
+            {"type": "success", "title": "Good!", "text": "Start scanning..."}
+        ]
+
     return render(request, 'run/run.html', data)

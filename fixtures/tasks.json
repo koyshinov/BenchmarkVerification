@@ -1,0 +1,32 @@
+[
+{
+  "model": "tasks.configuration",
+  "pk": 19,
+  "fields": {
+    "user": 5,
+    "name": "test configuration 1",
+    "hosts_text": "192.168.88.88",
+    "wmi_login": "user",
+    "wmi_passw": "1234567",
+    "deleted": false,
+    "benchmarks": [
+      3
+    ]
+  }
+},
+{
+  "model": "tasks.configuration",
+  "pk": 20,
+  "fields": {
+    "user": 5,
+    "name": "test configuration 2",
+    "hosts_text": "192.168.88.88",
+    "wmi_login": "user",
+    "wmi_passw": "1234567",
+    "deleted": false,
+    "benchmarks": [
+      3
+    ]
+  }
+}
+]

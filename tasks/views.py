@@ -93,7 +93,6 @@ def create_task(request):
     try:
         benchs = [Benchmark.objects.get(id=bench) for bench in benchmarks]
     except Benchmark.DoesNotExist:
-        # TODO: Написать тест под это дело
         data["messages"] = [
             {"type": "danger", "title": "Invalid configuration!",
              "text": "Some benchmarks not found"}
