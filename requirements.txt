@@ -1,4 +1,4 @@
-Django==2.1.4
+Django==2.2.24
 pypiwin32==223
 pytz==2018.7
 pywin32==224
